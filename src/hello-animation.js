@@ -59,7 +59,10 @@ function initHelloAnimation() {
   tick();
 }
 
-// Auto-initialize when DOM is ready
+// Export for ES module imports (main.js)
+export default initHelloAnimation;
+
+// Auto-initialize when DOM is ready (for direct <script> includes in blog pages)
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initHelloAnimation);
 } else {
