@@ -1,5 +1,5 @@
 // hello-animation.js — cycling "Hello" in multiple languages like Apple Mac setup
-export default function initHelloAnimation() {
+function initHelloAnimation() {
   const el = document.querySelector('.brand-hello');
   if (!el) return;
 
@@ -16,15 +16,14 @@ export default function initHelloAnimation() {
     'Hello, World',  // back to English
   ];
 
-  let gi = 0;       // greeting index
-  let ci = 0;       // char index
+  let gi = 0;
+  let ci = 0;
   let deleting = false;
-  let pauseTicks = 0;
 
-  const TYPE_SPEED   = 68;   // ms per char typing
-  const DELETE_SPEED = 32;   // ms per char deleting
-  const PAUSE_AFTER  = 1800; // ms to hold full word
-  const PAUSE_BEFORE = 220;  // ms before next word starts
+  const TYPE_SPEED   = 68;
+  const DELETE_SPEED = 32;
+  const PAUSE_AFTER  = 1800;
+  const PAUSE_BEFORE = 220;
 
   function tick() {
     const word = greetings[gi];
@@ -57,7 +56,12 @@ export default function initHelloAnimation() {
     }
   }
 
-  // kick off
-  el.textContent = '';
-  setTimeout(tick, 400);
+  tick();
+}
+
+// Auto-initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initHelloAnimation);
+} else {
+  initHelloAnimation();
 }

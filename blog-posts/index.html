@@ -19,6 +19,9 @@
       <a class="brand" href="/portfolio/">
         <span class="brand-hello" aria-label="Hello, World"></span>
       </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="/portfolio/#about">About</a></li>
         <li><a href="/portfolio/#experience">Experience</a></li>
@@ -35,8 +38,26 @@
 
   <script src="/src/hello-animation.js"></script>
   <script src="/src/theme-manager.js"></script>
+  <script>
+    // Burger menu handler
+    const toggleBtn = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (toggleBtn && navLinks) {
+      toggleBtn.addEventListener('click', () => {
+        toggleBtn.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+      
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          toggleBtn.classList.remove('open');
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+  </script>
   <script type="module">
-    // Get base path and slug
     const basePath = window.location.pathname.includes('/portfolio/') ? '/portfolio' : '';
     const urlParams = new URLSearchParams(window.location.search);
     const slug = urlParams.get('slug') || window.location.pathname.split('/').filter(p => p && p !== 'index.html').pop();
