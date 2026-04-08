@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog Post — Wan Faris</title>
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/components/BlogPost.css" />
+</head>
+<body>
+  <div id="post-container"></div>
+
+  <script type="module">
+    import { loadBlogPosts, renderBlogPost } from '/src/blog-renderer.js';
+
+    async function init() {
+      // Extract slug from current path
+      const pathSegments = window.location.pathname.split('/');
+      const slug = pathSegments[pathSegments.length - 1];
+
+      const posts = await loadBlogPosts();
+      const post = posts.find(p => p.slug === slug);
+
+      const container = document.getElementById('post-container');
+      renderBlogPost(container, post);
+    }
+
+    init();
+  </script>
+</body>
+</html>

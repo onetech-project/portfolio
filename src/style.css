@@ -1,12 +1,49 @@
-:root{
-  --bg-a:#E8F4F8;
-  --bg-b:#F0EBF8;
-  --accent:#6C8EF5;
-  --mint:#B8E4E4;
-  --lav:#E8D8F8;
-  --text:#1A1A2E;
-  --sub:#4A4A6A;
-  --nav-h:64px;
+/* Light mode (default) */
+:root {
+  color-scheme: light dark;
+  --bg-a: #E8F4F8;
+  --bg-b: #F0EBF8;
+  --accent: #6C8EF5;
+  --mint: #B8E4E4;
+  --lav: #E8D8F8;
+  --text: #1A1A2E;
+  --sub: #4A4A6A;
+  --nav-h: 64px;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-a: #0f0f1e;
+    --bg-b: #1a1a2e;
+    --accent: #7c9bff;
+    --mint: #4a9b9b;
+    --lav: #6b5b8f;
+    --text: #e8e8ff;
+    --sub: #b0b0d0;
+  }
+}
+
+/* Manual dark mode override */
+html.dark-mode {
+  --bg-a: #0f0f1e;
+  --bg-b: #1a1a2e;
+  --accent: #7c9bff;
+  --mint: #4a9b9b;
+  --lav: #6b5b8f;
+  --text: #e8e8ff;
+  --sub: #b0b0d0;
+}
+
+/* Manual light mode override */
+html.light-mode {
+  --bg-a: #E8F4F8;
+  --bg-b: #F0EBF8;
+  --accent: #6C8EF5;
+  --mint: #B8E4E4;
+  --lav: #E8D8F8;
+  --text: #1A1A2E;
+  --sub: #4A4A6A;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -27,6 +64,45 @@ body{
   overscroll-behavior-y:none;
 }
 body{ cursor:none }
+
+/* ═══════════════════════════
+   THEME TOGGLE
+═══════════════════════════ */
+.theme-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  background: rgba(108, 142, 245, 0.1);
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.25rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+  background: rgba(108, 142, 245, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(108, 142, 245, 0.3);
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    bottom: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+}
 
 /* ═══════════════════════════
    NAV — always solid glass

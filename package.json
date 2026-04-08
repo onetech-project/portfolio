@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node scripts/build-blog.js && vite",
+    "build": "node scripts/build-blog.js && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

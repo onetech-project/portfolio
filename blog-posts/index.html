@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog Post</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/components/BlogPost.css" />
+</head>
+<body>
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/portfolio/">
+        <span class="brand-hello" aria-label="Hello, World"></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/portfolio/#about">About</a></li>
+        <li><a href="/portfolio/#experience">Experience</a></li>
+        <li><a href="/portfolio/#projects">Projects</a></li>
+        <li><a href="/portfolio/blog.html">Blog</a></li>
+        <li><a href="/portfolio/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div id="post-container"></div>
+  </main>
+
+  <script src="/src/hello-animation.js"></script>
+  <script src="/src/theme-manager.js"></script>
+  <script type="module">
+    // Get base path and slug
+    const basePath = window.location.pathname.includes('/portfolio/') ? '/portfolio' : '';
+    const urlParams = new URLSearchParams(window.location.search);
+    const slug = urlParams.get('slug') || window.location.pathname.split('/').filter(p => p && p !== 'index.html').pop();
+
+    async function init() {
+      try {
+        const response = await fetch(`${basePath}/blog.json`);
+        const posts = await response.json();
+        const post = posts.find(p => p.slug === slug);
+        renderBlogPost(post);
+      } catch (err) {
+        console.error('Failed to load post:', err);
+        renderBlogPost(null);
+      }
+    }
+
+    function renderBlogPost(post) {
+      const container = document.getElementById('post-container');
+      
+      if (!post) {
+        container.innerHTML = `
+          <div class="blog-post">
+            <p>Post not found. <a href="${basePath}/blog.html">Back to blog</a></p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <article class="blog-post">
+          <div class="post-header">
+            <a href="${basePath}/blog.html" class="back-link">← Back to Blog</a>
+            <h1>${post.title}</h1>
+            <div class="post-info">
+              <span class="author">${post.author}</span>
+              <span class="separator">•</span>
+              <span class="date">${new Date(post.date).toLocaleDateString()}</span>
+              <span class="separator">•</span>
+              <span class="read-time">${post.readTime} min read</span>
+            </div>
+            ${post.tags.length > 0 ? `
+              <div class="tags">
+                ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+
+          ${post.image && post.image !== 'null' ? `
+            <img src="${post.image}" alt="${post.title}" class="post-image" />
+          ` : ''}
+
+          <div class="post-body">
+            ${post.content}
+          </div>
+        </article>
+      `;
+    }
+
+    init();
+  </script>
+</body>
+</html>

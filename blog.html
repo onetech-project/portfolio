@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — Wan Faris</title>
+  <meta name="description" content="Blog posts on web development, tech, and software strategy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/components/BlogList.css" />
+</head>
+<body>
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/portfolio/">
+        <span class="brand-hello" aria-label="Hello, World"></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/portfolio/#about">About</a></li>
+        <li><a href="/portfolio/#experience">Experience</a></li>
+        <li><a href="/portfolio/#projects">Projects</a></li>
+        <li><a href="/portfolio/blog.html">Blog</a></li>
+        <li><a href="/portfolio/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div id="blog-container"></div>
+  </main>
+
+  <script src="/src/hello-animation.js"></script>
+  <script src="/src/theme-manager.js"></script>
+  <script type="module">
+    // Get the base path
+    const basePath = window.location.pathname.includes('/portfolio/') ? '/portfolio' : '';
+
+    async function init() {
+      try {
+        const response = await fetch(`${basePath}/blog.json`);
+        const posts = await response.json();
+        renderBlogList(posts);
+      } catch (err) {
+        console.error('Failed to load posts:', err);
+        renderBlogList([]);
+      }
+    }
+
+    function renderBlogList(posts) {
+      const container = document.getElementById('blog-container');
+      
+      if (posts.length === 0) {
+        container.innerHTML = `
+          <div class="blog-list">
+            <div class="blog-header">
+              <h1>Blog</h1>
+              <p class="subtitle">Thoughts on web, tech & strategy</p>
+            </div>
+            <div class="no-posts">No posts yet. Stay tuned.</div>
+          </div>
+        `;
+        return;
+      }
+
+      const postsHTML = posts
+        .map(post => `
+          <a href="${basePath}/blog-posts/?slug=${post.slug}" class="post-card">
+            ${post.image && post.image !== 'null' ? `
+              <div class="post-image">
+                <img src="${post.image}" alt="${post.title}" />
+              </div>
+            ` : ''}
+            <div class="post-content">
+              <h2>${post.title}</h2>
+              <p class="post-excerpt">${post.excerpt}</p>
+              <div class="post-meta">
+                <span class="date">${new Date(post.date).toLocaleDateString()}</span>
+                <span class="read-time">${post.readTime} min read</span>
+              </div>
+              ${post.tags.length > 0 ? `
+                <div class="tags">
+                  ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+              ` : ''}
+            </div>
+          </a>
+        `)
+        .join('');
+
+      container.innerHTML = `
+        <div class="blog-list">
+          <div class="blog-header">
+            <h1>Blog</h1>
+            <p class="subtitle">Thoughts on web, tech & strategy</p>
+          </div>
+          <div class="posts-grid">
+            ${postsHTML}
+          </div>
+        </div>
+      `;
+    }
+
+    init();
+  </script>
+</body>
+</html>
