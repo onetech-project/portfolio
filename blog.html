@@ -33,9 +33,13 @@
     </div>
   </nav>
 
-  <main>
+  <main style="padding-top: var(--nav-h);">
     <div id="blog-container"></div>
   </main>
+
+  <footer class="footer">
+    <p>© Faris Baros — Built with passion, innovation and imagination &nbsp;·&nbsp; Assisted by Arthéon (an AI Personal Assistant)</p>
+  </footer>
 
   <script src="/src/hello-animation.js"></script>
   <script src="/src/theme-manager.js"></script>
@@ -43,18 +47,25 @@
     // Burger menu handler
     const toggleBtn = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
-    
     if (toggleBtn && navLinks) {
       toggleBtn.addEventListener('click', () => {
         toggleBtn.classList.toggle('open');
         navLinks.classList.toggle('open');
+        toggleBtn.setAttribute('aria-expanded', navLinks.classList.contains('open'));
       });
-      
       navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           toggleBtn.classList.remove('open');
           navLinks.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', false);
         });
+      });
+      document.addEventListener('click', (e) => {
+        if (!document.querySelector('.nav').contains(e.target)) {
+          toggleBtn.classList.remove('open');
+          navLinks.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', false);
+        }
       });
     }
   </script>
@@ -74,7 +85,6 @@
 
     function renderBlogList(posts) {
       const container = document.getElementById('blog-container');
-      
       if (posts.length === 0) {
         container.innerHTML = `
           <div class="blog-list">
@@ -88,30 +98,28 @@
         return;
       }
 
-      const postsHTML = posts
-        .map(post => `
-          <a href="${basePath}/blog-posts/?slug=${post.slug}" class="post-card">
-            ${post.image && post.image !== 'null' ? `
-              <div class="post-image">
-                <img src="${post.image}" alt="${post.title}" />
+      const postsHTML = posts.map(post => `
+        <a href="${basePath}/blog-posts/?slug=${post.slug}" class="post-card">
+          ${post.image && post.image !== 'null' ? `
+            <div class="post-image">
+              <img src="${post.image}" alt="${post.title}" />
+            </div>
+          ` : ''}
+          <div class="post-content">
+            <h2>${post.title}</h2>
+            <p class="post-excerpt">${post.excerpt}</p>
+            <div class="post-meta">
+              <span class="date">${new Date(post.date).toLocaleDateString()}</span>
+              <span class="read-time">${post.readTime} min read</span>
+            </div>
+            ${post.tags.length > 0 ? `
+              <div class="tags">
+                ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
               </div>
             ` : ''}
-            <div class="post-content">
-              <h2>${post.title}</h2>
-              <p class="post-excerpt">${post.excerpt}</p>
-              <div class="post-meta">
-                <span class="date">${new Date(post.date).toLocaleDateString()}</span>
-                <span class="read-time">${post.readTime} min read</span>
-              </div>
-              ${post.tags.length > 0 ? `
-                <div class="tags">
-                  ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                </div>
-              ` : ''}
-            </div>
-          </a>
-        `)
-        .join('');
+          </div>
+        </a>
+      `).join('');
 
       container.innerHTML = `
         <div class="blog-list">
@@ -119,9 +127,7 @@
             <h1>Blog</h1>
             <p class="subtitle">Thoughts on web, tech & strategy</p>
           </div>
-          <div class="posts-grid">
-            ${postsHTML}
-          </div>
+          <div class="posts-grid">${postsHTML}</div>
         </div>
       `;
     }
