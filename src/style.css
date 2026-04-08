@@ -3,24 +3,42 @@
   color-scheme: light dark;
   --bg-a: #E8F4F8;
   --bg-b: #F0EBF8;
+  --bg-mid: #EEE8F8;
+  --bg-alt: #E8F0FB;
   --accent: #6C8EF5;
   --mint: #B8E4E4;
   --lav: #E8D8F8;
   --text: #1A1A2E;
   --sub: #4A4A6A;
   --nav-h: 64px;
+  --nav-bg: rgba(232,240,252,0.85);
+  --nav-scrolled: rgba(228,234,255,0.95);
+  --nav-border: rgba(255,255,255,0.65);
+  --nav-mobile-bg: rgba(232,240,255,0.97);
+  --glass-bg: rgba(255,255,255,0.55);
+  --glass-border: rgba(255,255,255,0.8);
+  --glass-hover: rgba(255,255,255,0.45);
 }
 
-/* Dark mode */
+/* Dark mode (system preference) */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-a: #0f0f1e;
     --bg-b: #1a1a2e;
+    --bg-mid: #16162a;
+    --bg-alt: #111122;
     --accent: #7c9bff;
     --mint: #4a9b9b;
     --lav: #6b5b8f;
     --text: #e8e8ff;
     --sub: #b0b0d0;
+    --nav-bg: rgba(15,15,30,0.88);
+    --nav-scrolled: rgba(20,20,40,0.96);
+    --nav-border: rgba(255,255,255,0.1);
+    --nav-mobile-bg: rgba(15,15,30,0.97);
+    --glass-bg: rgba(255,255,255,0.05);
+    --glass-border: rgba(255,255,255,0.12);
+    --glass-hover: rgba(255,255,255,0.08);
   }
 }
 
@@ -28,22 +46,40 @@
 html.dark-mode {
   --bg-a: #0f0f1e;
   --bg-b: #1a1a2e;
+  --bg-mid: #16162a;
+  --bg-alt: #111122;
   --accent: #7c9bff;
   --mint: #4a9b9b;
   --lav: #6b5b8f;
   --text: #e8e8ff;
   --sub: #b0b0d0;
+  --nav-bg: rgba(15,15,30,0.88);
+  --nav-scrolled: rgba(20,20,40,0.96);
+  --nav-border: rgba(255,255,255,0.1);
+  --nav-mobile-bg: rgba(15,15,30,0.97);
+  --glass-bg: rgba(255,255,255,0.05);
+  --glass-border: rgba(255,255,255,0.12);
+  --glass-hover: rgba(255,255,255,0.08);
 }
 
 /* Manual light mode override */
 html.light-mode {
   --bg-a: #E8F4F8;
   --bg-b: #F0EBF8;
+  --bg-mid: #EEE8F8;
+  --bg-alt: #E8F0FB;
   --accent: #6C8EF5;
   --mint: #B8E4E4;
   --lav: #E8D8F8;
   --text: #1A1A2E;
   --sub: #4A4A6A;
+  --nav-bg: rgba(232,240,252,0.85);
+  --nav-scrolled: rgba(228,234,255,0.95);
+  --nav-border: rgba(255,255,255,0.65);
+  --nav-mobile-bg: rgba(232,240,255,0.97);
+  --glass-bg: rgba(255,255,255,0.55);
+  --glass-border: rgba(255,255,255,0.8);
+  --glass-hover: rgba(255,255,255,0.45);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -55,8 +91,8 @@ body{
   background:linear-gradient(180deg,
     var(--bg-a) 0%,
     var(--bg-b) 25%,
-    #EEE8F8 50%,
-    #E8F0FB 75%,
+    var(--bg-mid) 50%,
+    var(--bg-alt) 75%,
     var(--bg-a) 100%
   );
   background-attachment:fixed;
@@ -111,15 +147,15 @@ body{ cursor:none }
   position:fixed;left:0;right:0;top:0;
   height:var(--nav-h);
   z-index:200;
-  background:rgba(232,240,252,0.82);
+  background:var(--nav-bg);
   backdrop-filter:blur(22px) saturate(180%);
   -webkit-backdrop-filter:blur(22px) saturate(180%);
-  border-bottom:1px solid rgba(255,255,255,0.65);
+  border-bottom:1px solid var(--nav-border);
   box-shadow:0 2px 16px rgba(20,24,40,0.07);
   transition:background .25s, box-shadow .25s;
 }
 .nav.scrolled{
-  background:rgba(228,234,255,0.92);
+  background:var(--nav-scrolled);
   box-shadow:0 4px 28px rgba(20,24,40,0.11);
 }
 .nav-inner{
@@ -291,10 +327,10 @@ body{ cursor:none }
 
 /* glass card */
 .glass-card{
-  background:rgba(255,255,255,0.55);
+  background:var(--glass-bg);
   border-radius:20px;
   padding:24px;
-  border:1px solid rgba(255,255,255,0.8);
+  border:1px solid var(--glass-border);
   backdrop-filter:blur(16px) saturate(180%);
   box-shadow:0 6px 24px rgba(20,24,40,0.06);
 }
@@ -303,10 +339,10 @@ body{ cursor:none }
 .about-card{display:flex;flex-direction:column;gap:12px}
 .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .chip{
-  background:rgba(255,255,255,0.45);
+  background:var(--glass-hover);
   padding:6px 12px;border-radius:999px;
   font-weight:600;color:var(--text);
-  border:1px solid rgba(255,255,255,0.6);
+  border:1px solid var(--glass-border);
   font-size:14px;
 }
 
@@ -386,7 +422,7 @@ body{ cursor:none }
   width:100%;padding:10px 12px;
   border-radius:10px;
   border:1px solid rgba(22,24,40,0.08);
-  background:rgba(255,255,255,0.7);
+  background:var(--glass-bg);
   font-size:16px;
   font-family:inherit;
   outline:none;
@@ -432,10 +468,10 @@ body{ cursor:none }
     position:fixed;
     top:var(--nav-h);
     left:0;right:0;
-    background:rgba(232,240,255,0.97);
+    background:var(--nav-mobile-bg);
     backdrop-filter:blur(24px) saturate(200%);
     -webkit-backdrop-filter:blur(24px) saturate(200%);
-    border-bottom:1px solid rgba(255,255,255,0.7);
+    border-bottom:1px solid var(--glass-bg);
     box-shadow:0 8px 32px rgba(20,24,40,0.12);
     padding:10px 12px 16px;
     z-index:199;
