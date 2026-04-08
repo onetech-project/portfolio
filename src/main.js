@@ -1,13 +1,11 @@
 import './style.css';
 import initThree from './three-scene.js';
 import initAnimations from './animations.js';
-import initCursor from './cursor.js';
 
 // initialize features
 initThree();
-initCursor();
 initAnimations();
-// hello-animation is loaded via <script> tag in index.html and auto-inits
+// cursor and hello-animation are loaded via <script> tags and auto-init
 
 // nav: scrolled class + hamburger
 const nav = document.querySelector('.nav');
