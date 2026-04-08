@@ -3,7 +3,7 @@ title: Getting Started with Vite
 date: 2026-04-08
 author: Faris
 tags: web development, vite, tooling
-image: null
+image: https://miro.medium.com/v2/1*udvSMrSVGOgD4fxjMJHbOw.jpeg
 ---
 
 # Getting Started with Vite
@@ -13,9 +13,10 @@ Vite is a modern build tool that significantly improves the frontend development
 ## Why Vite?
 
 The traditional dev server approach has several limitations:
-* Slow cold starts
-* Slow updates with source changes
-* Unnecessary bundling of modules that aren't used
+
+- Slow cold starts
+- Slow updates with source changes
+- Unnecessary bundling of modules that aren't used
 
 Vite solves these problems by serving source code over native ES modules.
 
@@ -45,9 +46,10 @@ Vite supports React, Vue, Svelte, and many other frameworks. The configuration i
 ## Performance Metrics
 
 Vite typically delivers:
-* **Dev server startup:** <100ms
-* **HMR updates:** <50ms
-* **Build time:** 2-5 seconds for medium projects
+
+- **Dev server startup:** <100ms
+- **HMR updates:** <50ms
+- **Build time:** 2-5 seconds for medium projects
 
 ## Conclusion
 

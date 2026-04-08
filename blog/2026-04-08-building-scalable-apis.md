@@ -3,7 +3,7 @@ title: Building Scalable APIs with NestJS and PostgreSQL
 date: 2026-04-08
 author: Faris Baros
 tags: backend, nestjs, architecture, database
-image: https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=1200&h=600&fit=crop
+image: https://cdn.intuji.com/2022/09/Nestjs_hero1.png
 ---
 
 # Building Scalable APIs with NestJS and PostgreSQL
@@ -76,6 +76,7 @@ PostgreSQL is powerful, but bad schema design kills performance at scale.
 ### Indexing Strategy
 
 Your queries are only as fast as your indexes. Always index:
+
 - Foreign keys
 - Frequently filtered columns
 - Sort keys
@@ -93,7 +94,7 @@ Notice the last one? **Partial indexes** save space and improve query performanc
 Don't create a new database connection per request. Use connection pooling with PgBouncer or TypeORM's built-in pool:
 
 ```javascript
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm'
 
 @Module({
   imports: [
@@ -243,12 +244,12 @@ Use `.select()` to fetch only needed columns:
 
 ```javascript
 // BAD: fetches all columns
-const users = await this.repo.find();
+const users = await this.repo.find()
 
 // GOOD: fetches only what you need
 const users = await this.repo.find({
   select: ['id', 'email', 'name'],
-});
+})
 ```
 
 This reduces payload size and database work. For large tables, the difference is huge.
@@ -287,8 +288,8 @@ this.logger.log(
     userId: transaction.userId,
     amount: transaction.amount,
     duration: Date.now() - startTime,
-  }),
-);
+  })
+)
 ```
 
 This makes logs machine-readable and searchable in systems like ELK or Datadog.
