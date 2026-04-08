@@ -335,4 +335,4 @@ The code examples here use NestJS and TypeORM, but the principles apply to any f
 
 ---
 
-**Have thoughts on API architecture? I'd love to hear your approach. Drop a comment below or reach out on Twitter.**
+**Have thoughts on API architecture? I'd love to hear your approach.**
