@@ -1,25 +1,21 @@
-import './style.css';
-import initThree from './three-scene.js';
-import initAnimations from './animations.js';
-import initCursor from './cursor.js';
-import initHelloAnimation from './hello-animation.js';
-import initThemeManager from './theme-manager.js';
-
-initThree();
-initCursor();
-initAnimations();
-initHelloAnimation();
-initThemeManager();
+// blog-entry.js — shared entry for blog pages
+// Imported as <script type="module"> by blog.html and blog-posts/index.html
+import '../src/style.css';
+import initHelloAnimation from '../src/hello-animation.js';
+import initCursor from '../src/cursor.js';
+import initThemeManager from '../src/theme-manager.js';
 
 // Nav scroll class
 const nav = document.querySelector('.nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+}
 
-// Hamburger menu
+// Burger menu
 const toggleBtn = document.querySelector('.nav-toggle');
-const navLinks  = document.querySelector('.nav-links');
+const navLinks = document.querySelector('.nav-links');
 if (toggleBtn && navLinks) {
   toggleBtn.addEventListener('click', () => {
     const open = navLinks.classList.toggle('open');
@@ -41,3 +37,7 @@ if (toggleBtn && navLinks) {
     }
   });
 }
+
+initHelloAnimation();
+initCursor();
+initThemeManager();

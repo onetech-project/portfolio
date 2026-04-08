@@ -8,8 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/style.css" />
-  <link rel="stylesheet" href="/src/components/BlogList.css" />
 </head>
 <body>
   <!-- Theme Toggle -->
@@ -45,37 +43,11 @@
   <div class="cursor cursor-dot" aria-hidden></div>
   <div class="cursor cursor-ring" aria-hidden></div>
 
-  <script src="/src/hello-animation.js"></script>
-  <script src="/src/cursor.js"></script>
-  <script src="/src/theme-manager.js"></script>
-  <script>
-    // Burger menu handler
-    const toggleBtn = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    if (toggleBtn && navLinks) {
-      toggleBtn.addEventListener('click', () => {
-        toggleBtn.classList.toggle('open');
-        navLinks.classList.toggle('open');
-        toggleBtn.setAttribute('aria-expanded', navLinks.classList.contains('open'));
-      });
-      navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          toggleBtn.classList.remove('open');
-          navLinks.classList.remove('open');
-          toggleBtn.setAttribute('aria-expanded', false);
-        });
-      });
-      document.addEventListener('click', (e) => {
-        if (!document.querySelector('.nav').contains(e.target)) {
-          toggleBtn.classList.remove('open');
-          navLinks.classList.remove('open');
-          toggleBtn.setAttribute('aria-expanded', false);
-        }
-      });
-    }
-  </script>
   <script type="module">
-    const basePath = window.location.pathname.includes('/portfolio/') ? '/portfolio' : '';
+    import '/src/blog-entry.js';
+    import '/src/components/BlogList.css';
+
+    const basePath = '/portfolio';
 
     async function init() {
       try {
