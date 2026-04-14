@@ -134,7 +134,13 @@ export default function initThree() {
 
   // ── Resize ──
   function resize() {
-    const w = window.innerWidth, h = window.innerHeight;
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+
+    const rect = hero.getBoundingClientRect();
+    const w = rect.width;
+    const h = rect.height;
+
     renderer.setSize(w, h);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
