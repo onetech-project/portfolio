@@ -460,6 +460,12 @@ body {
   font-size: 14px;
 }
 
+.chip-ai {
+  background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(168,85,247,0.18));
+  border-color: rgba(168,85,247,0.4);
+  color: var(--text);
+}
+
 /* experience */
 /* ── Section icons ── */
 .section-icon {
