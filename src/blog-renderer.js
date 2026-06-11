@@ -2,7 +2,7 @@
 
 export async function loadBlogPosts() {
   try {
-    const response = await fetch('/blog.json');
+    const response = await fetch('./blog.json');
     return await response.json();
   } catch (error) {
     console.error('Failed to load blog posts:', error);

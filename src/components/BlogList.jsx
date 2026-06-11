@@ -6,7 +6,7 @@ export default function BlogList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/blog.json')
+    fetch('./blog.json')
       .then(res => res.json())
       .then(data => {
         setPosts(data);

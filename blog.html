@@ -47,11 +47,9 @@
     import '/src/blog-entry.js';
     import '/src/components/BlogList.css';
 
-    const basePath = '/';
-
     async function init() {
       try {
-        const response = await fetch(`${basePath}/blog.json`);
+        const response = await fetch(`./blog.json`);
         const posts = await response.json();
         renderBlogList(posts);
       } catch (err) {
