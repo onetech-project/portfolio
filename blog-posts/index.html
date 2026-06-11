@@ -46,13 +46,12 @@
     import '/src/blog-entry.js';
     import '/src/components/BlogPost.css';
 
-    const basePath = '';
     const urlParams = new URLSearchParams(window.location.search);
     const slug = urlParams.get('slug');
 
     async function init() {
       try {
-        const response = await fetch(`${basePath}/blog.json`);
+        const response = await fetch('./blog.json');
         const posts = await response.json();
         const post = posts.find(p => p.slug === slug);
         renderBlogPost(post);
