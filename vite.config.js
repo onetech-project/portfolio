@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
-  base: '/portfolio/',
+  base: '/',
   build: {
     rollupOptions: {
       input: {
@@ -14,6 +14,6 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    allowedHosts: ['faris-hp-notebook', 'localhost', '127.0.0.1']
+    allowedHosts: ['farisbaros.dev', 'faris-hp-notebook', 'localhost', '127.0.0.1']
   }
 })
