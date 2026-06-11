@@ -26,7 +26,7 @@ export function renderBlogList(container, posts) {
 
   const postsHTML = posts
     .map(post => `
-      <a href="/portfolio/blog/${post.slug}" class="post-card">
+      <a href="/blog/${post.slug}" class="post-card">
         ${post.image && post.image !== 'null' ? `
           <div class="post-image">
             <img src="${post.image}" alt="${post.title}" />
@@ -66,7 +66,7 @@ export function renderBlogPost(container, post) {
   if (!post) {
     container.innerHTML = `
       <div class="blog-post">
-        <p>Post not found. <a href="/portfolio/blog">Back to blog</a></p>
+        <p>Post not found. <a href="/blog">Back to blog</a></p>
       </div>
     `;
     return;
@@ -75,7 +75,7 @@ export function renderBlogPost(container, post) {
   container.innerHTML = `
     <article class="blog-post">
       <div class="post-header">
-        <a href="/portfolio/blog" class="back-link">← Back to Blog</a>
+        <a href="/blog" class="back-link">← Back to Blog</a>
         <h1>${post.title}</h1>
         <div class="post-info">
           <span class="author">${post.author}</span>

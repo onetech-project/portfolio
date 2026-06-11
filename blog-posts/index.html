@@ -14,18 +14,18 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="/portfolio/">
+      <a class="brand" href="/">
         <span class="brand-hello" aria-label="Hello, World"></span>
       </a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links">
-        <li><a href="/portfolio/#about">About</a></li>
-        <li><a href="/portfolio/#experience">Experience</a></li>
-        <li><a href="/portfolio/#projects">Projects</a></li>
-        <li><a href="/portfolio/blog.html">Blog</a></li>
-        <li><a href="/portfolio/#contact">Contact</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -46,7 +46,7 @@
     import '/src/blog-entry.js';
     import '/src/components/BlogPost.css';
 
-    const basePath = '/portfolio';
+    const basePath = '';
     const urlParams = new URLSearchParams(window.location.search);
     const slug = urlParams.get('slug');
 
