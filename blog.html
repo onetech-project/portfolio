@@ -74,7 +74,7 @@
       }
 
       const postsHTML = posts.map(post => `
-        <a href="${basePath}/blog-posts/?slug=${post.slug}" class="post-card">
+        <a href="/blog-posts/?slug=${post.slug}" class="post-card">
           ${post.image && post.image !== 'null' ? `
             <div class="post-image">
               <img src="${post.image}" alt="${post.title}" />

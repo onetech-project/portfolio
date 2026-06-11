@@ -66,7 +66,7 @@
       if (!post) {
         container.innerHTML = `
           <div class="blog-post">
-            <p>Post not found. <a href="${basePath}/blog.html">Back to blog</a></p>
+            <p>Post not found. <a href="/blog.html">Back to blog</a></p>
           </div>
         `;
         return;
@@ -77,7 +77,7 @@
       container.innerHTML = `
         <article class="blog-post">
           <div class="post-header">
-            <a href="${basePath}/blog.html" class="back-link">← Back to Blog</a>
+            <a href="/blog.html" class="back-link">← Back to Blog</a>
             <h1>${post.title}</h1>
             <div class="post-info">
               <span class="author">${post.author}</span>
