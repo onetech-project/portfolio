@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+const basePath = import.meta.env.VITE_BASE_PATH;
 import './BlogPost.css';
 
 export default function BlogPost() {
@@ -16,12 +17,12 @@ export default function BlogPost() {
         if (found) {
           setPost(found);
         } else {
-          navigate('/blog');
+          navigate(`${basePath}/blog`);
         }
         setLoading(false);
       })
       .catch(() => {
-        navigate('/blog');
+        navigate(`${basePath}/blog`);
         setLoading(false);
       });
   }, [slug, navigate]);
@@ -37,7 +38,7 @@ export default function BlogPost() {
   return (
     <article className="blog-post">
       <div className="post-header">
-        <a href="/blog" className="back-link">← Back to Blog</a>
+        <a href={`${basePath}/blog`} className="back-link">← Back to Blog</a>
         <h1>{post.title}</h1>
         <div className="post-info">
           <span className="author">{post.author}</span>

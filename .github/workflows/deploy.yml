@@ -25,6 +25,10 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      
+      - name: Create .env file
+        run: |
+          echo "VITE_BASE_PATH=${{ vars.VITE_BASE_PATH }}" > .env
 
       - name: Install dependencies
         run: npm ci

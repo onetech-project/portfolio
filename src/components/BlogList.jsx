@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+const basePath = import.meta.env.VITE_BASE_PATH;
 import './BlogList.css';
 
 export default function BlogList() {
@@ -36,7 +37,7 @@ export default function BlogList() {
           {posts.map(post => (
             <a
               key={post.id}
-              href={`/blog/${post.slug}`}
+              href={`${basePath}/blog/${post.slug}`}
               className="post-card"
             >
               {post.image && (

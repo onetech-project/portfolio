@@ -9,20 +9,20 @@
   <meta name="description" content="Wan Faris Isfa Putra Baros — Full Stack Software Developer with 8+ years experience. Specialized in ReactJS, NestJS, React Native, Node.js, and cloud-native systems. Based in Bogor, Indonesia." />
   <meta name="keywords" content="Wan Faris, software developer, full stack developer, ReactJS, NestJS, Node.js, React Native, Indonesia, Bogor, web developer, mobile developer" />
   <meta name="author" content="Wan Faris Isfa Putra Baros" />
-  <link rel="canonical" href="https://farisbaros.dev/" />
+  <link rel="canonical" href="https://farisbaros.is-a.dev/" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://farisbaros.dev/" />
+  <meta property="og:url" content="https://farisbaros.is-a.dev/" />
   <meta property="og:title" content="Wan Faris — Full Stack Software Developer" />
   <meta property="og:description" content="8+ years building scalable web & mobile apps — from internet banking to enterprise platforms. ReactJS, NestJS, React Native, Node.js." />
-  <meta property="og:image" content="https://farisbaros.dev/src/avatar.jpg" />
+  <meta property="og:image" content="https://farisbaros.is-a.dev/src/avatar.jpg" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Wan Faris — Full Stack Software Developer" />
   <meta name="twitter:description" content="8+ years building scalable web & mobile apps — from internet banking to enterprise platforms." />
-  <meta name="twitter:image" content="https://farisbaros.dev/src/avatar.jpg" />
+  <meta name="twitter:image" content="https://farisbaros.is-a.dev/src/avatar.jpg" />
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -30,8 +30,8 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Wan Faris Isfa Putra Baros",
-    "url": "https://farisbaros.dev/",
-    "image": "https://farisbaros.dev/src/avatar.jpg",
+    "url": "https://farisbaros.is-a.dev/",
+    "image": "https://farisbaros.is-a.dev/src/avatar.jpg",
     "jobTitle": "Full Stack Software Developer",
     "worksFor": { "@type": "Organization", "name": "Freelance" },
     "address": { "@type": "PostalAddress", "addressLocality": "Bogor", "addressCountry": "ID" },
@@ -44,13 +44,19 @@
     "knowsAbout": ["ReactJS", "NestJS", "Node.js", "React Native", "MongoDB", "PostgreSQL", "Docker", "Microservices"]
   }
   </script>
+  
+  <script>
+    window.APP_CONFIG = {
+      basePath: "%VITE_BASE_PATH%"
+    };
+  </script>
 
   <!-- Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/src/style.css">
+  <link rel="stylesheet" href="%VITE_BASE_PATH%/src/style.css">
 </head>
 <body>
   <nav class="nav">
@@ -65,7 +71,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="%VITE_BASE_PATH%/blog.html">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -76,14 +82,14 @@
       <canvas id="hero-canvas"></canvas>
       <div class="hero-content">
         <div class="avatar-wrap">
-          <img src="/src/avatar.jpg" alt="Faris Baros" class="avatar" />
+          <img src="%VITE_BASE_PATH%/src/avatar.jpg" alt="Faris Baros" class="avatar" />
         </div>
         <h1 class="name">Faris Baros</h1>
         <p class="role">Software Developer</p>
         <p class="tagline">8+ years building scalable web & mobile apps — from internet banking to enterprise platforms.</p>
         <div class="hero-ctas">
           <a class="btn primary" href="#experience">View Work</a>
-          <a class="btn" href="/files/CV-Wan-Faris-Software-Developer.pdf" download="CV-Wan-Faris-Software-Developer.pdf">Download Resume</a>
+          <a class="btn" href="%VITE_BASE_PATH%/files/CV-Wan-Faris-Software-Developer.pdf" download="CV-Wan-Faris-Software-Developer.pdf">Download Resume</a>
         </div>
       </div>
     </header>
@@ -247,6 +253,6 @@
   <div class="cursor cursor-dot" aria-hidden></div>
   <div class="cursor cursor-ring" aria-hidden></div>
 
-  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="%VITE_BASE_PATH%/src/main.js"></script>
 </body>
 </html>

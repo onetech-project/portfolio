@@ -7,6 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    window.APP_CONFIG = {
+      basePath: "%VITE_BASE_PATH%"
+    };
+  </script>
 </head>
 <body>
   <!-- Theme Toggle -->
@@ -24,7 +29,7 @@
         <li><a href="/#about">About</a></li>
         <li><a href="/#experience">Experience</a></li>
         <li><a href="/#projects">Projects</a></li>
-        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="%VITE_BASE_PATH%/blog.html">Blog</a></li>
         <li><a href="/#contact">Contact</a></li>
       </ul>
     </div>
@@ -43,8 +48,8 @@
   <div class="cursor cursor-ring" aria-hidden></div>
 
   <script type="module">
-    import '/src/blog-entry.js';
-    import '/src/components/BlogPost.css';
+    import '%VITE_BASE_PATH%/src/blog-entry.js';
+    import '%VITE_BASE_PATH%/src/components/BlogPost.css';
 
     const urlParams = new URLSearchParams(window.location.search);
     const slug = urlParams.get('slug');
@@ -66,7 +71,7 @@
       if (!post) {
         container.innerHTML = `
           <div class="blog-post">
-            <p>Post not found. <a href="/blog.html">Back to blog</a></p>
+            <p>Post not found. <a href="%VITE_BASE_PATH%/blog.html">Back to blog</a></p>
           </div>
         `;
         return;
@@ -77,7 +82,7 @@
       container.innerHTML = `
         <article class="blog-post">
           <div class="post-header">
-            <a href="/blog.html" class="back-link">← Back to Blog</a>
+            <a href="%VITE_BASE_PATH%/blog.html" class="back-link">← Back to Blog</a>
             <h1>${post.title}</h1>
             <div class="post-info">
               <span class="author">${post.author}</span>

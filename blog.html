@@ -8,6 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    window.APP_CONFIG = {
+      basePath: "%VITE_BASE_PATH%"
+    };
+  </script>
 </head>
 <body>
   <!-- Theme Toggle -->
@@ -15,7 +20,7 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="/">
+      <a class="brand" href="%VITE_BASE_PATH%">
         <span class="brand-hello" aria-label="Hello, World"></span>
       </a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -25,7 +30,7 @@
         <li><a href="/#about">About</a></li>
         <li><a href="/#experience">Experience</a></li>
         <li><a href="/#projects">Projects</a></li>
-        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="%VITE_BASE_PATH%/blog.html">Blog</a></li>
         <li><a href="/#contact">Contact</a></li>
       </ul>
     </div>
@@ -44,8 +49,8 @@
   <div class="cursor cursor-ring" aria-hidden></div>
 
   <script type="module">
-    import '/src/blog-entry.js';
-    import '/src/components/BlogList.css';
+    import '%VITE_BASE_PATH%/src/blog-entry.js';
+    import '%VITE_BASE_PATH%/src/components/BlogList.css';
 
     async function init() {
       try {
@@ -74,7 +79,7 @@
       }
 
       const postsHTML = posts.map(post => `
-        <a href="/blog-posts/?slug=${post.slug}" class="post-card">
+        <a href="%VITE_BASE_PATH%/blog-posts/?slug=${post.slug}" class="post-card">
           ${post.image && post.image !== 'null' ? `
             <div class="post-image">
               <img src="${post.image}" alt="${post.title}" />
