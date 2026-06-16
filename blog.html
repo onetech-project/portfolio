@@ -49,8 +49,10 @@
   <div class="cursor cursor-ring" aria-hidden></div>
 
   <script type="module">
-    import '%VITE_BASE_PATH%/src/blog-entry.js';
-    import '%VITE_BASE_PATH%/src/components/BlogList.css';
+    import '/src/blog-entry.js';
+    import '/src/components/BlogList.css';
+
+    const { basePath } = window.APP_CONFIG
 
     async function init() {
       try {
@@ -79,7 +81,7 @@
       }
 
       const postsHTML = posts.map(post => `
-        <a href="%VITE_BASE_PATH%/blog-posts/?slug=${post.slug}" class="post-card">
+        <a href="${basePath}/blog-posts/?slug=${post.slug}" class="post-card">
           ${post.image && post.image !== 'null' ? `
             <div class="post-image">
               <img src="${post.image}" alt="${post.title}" />

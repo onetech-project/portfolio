@@ -48,8 +48,9 @@
   <div class="cursor cursor-ring" aria-hidden></div>
 
   <script type="module">
-    import '%VITE_BASE_PATH%/src/blog-entry.js';
-    import '%VITE_BASE_PATH%/src/components/BlogPost.css';
+    import '/src/blog-entry.js';
+    import '/src/components/BlogPost.css';
+    const { basePath } = window.APP_CONFIG
 
     const urlParams = new URLSearchParams(window.location.search);
     const slug = urlParams.get('slug');
@@ -71,7 +72,7 @@
       if (!post) {
         container.innerHTML = `
           <div class="blog-post">
-            <p>Post not found. <a href="%VITE_BASE_PATH%/blog.html">Back to blog</a></p>
+            <p>Post not found. <a href="${basePath}/blog.html">Back to blog</a></p>
           </div>
         `;
         return;
@@ -82,7 +83,7 @@
       container.innerHTML = `
         <article class="blog-post">
           <div class="post-header">
-            <a href="%VITE_BASE_PATH%/blog.html" class="back-link">← Back to Blog</a>
+            <a href="${basePath}/blog.html" class="back-link">← Back to Blog</a>
             <h1>${post.title}</h1>
             <div class="post-info">
               <span class="author">${post.author}</span>
