@@ -57,7 +57,7 @@
 
     async function init() {
       try {
-        const response = await fetch('./blog.json');
+        const response = await fetch(`${basePath}/blog.json`);
         const posts = await response.json();
         const post = posts.find(p => p.slug === slug);
         renderBlogPost(post);

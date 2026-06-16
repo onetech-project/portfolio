@@ -10,7 +10,7 @@ export default function BlogPost() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('./blog.json')
+    fetch(`${basePath}/blog.json`)
       .then(res => res.json())
       .then(posts => {
         const found = posts.find(p => p.slug === slug);
